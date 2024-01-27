@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "minifzf"
+version = "0.1.0"
+description = "Streamline Your CLI: `minifzf` offers the core of `fzf`'s fuzzy selection in Python, perfect for enhancing CLI tools with simplicity and efficiency."
+authors = ["Harsh Verma <synacktra.work@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8, <4.0"
+rich = "13.7.0"
+regex = "2023.12.25"
+sshkeyboard = "2.3.1"
+cyclopts = "2.1.2"
+
+
+[tool.poetry.scripts]
+minifzf = "minifzf._cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
