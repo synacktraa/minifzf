@@ -12,12 +12,8 @@ from rich.console import Console
 
 from sshkeyboard import listen_keyboard, stop_listening
 
-try:
-    from . import _key, _style
-    from .search import iter_search_results
-except ImportError: # only for local testing, remove it before publishing
-    import _key, _style
-    from search import iter_search_results
+from . import _key, _style
+from .search import iter_search_results
 
 
 class Selector:
@@ -269,7 +265,6 @@ class Selector:
     
     def __update_idxs_after_resize(self):
         row_cnt, visibles = self.rows_count(include_visible=True)
-    
         self._start_idx = max(0, min(self._ptr, row_cnt - visibles))
         self._end_idx = min(row_cnt, self._start_idx + visibles)
         self._ptr = min(max(self._ptr, self._start_idx), self._end_idx - 1)

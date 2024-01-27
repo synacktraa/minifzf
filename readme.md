@@ -103,6 +103,5 @@ path_selector = Selector.as_path_selector(
 selected = path_selector.select()
 ```
 
-
 ### Contribution and Feedback:
 We welcome contributions and feedback to improve `minifzf`. If you have ideas, issues, or want to contribute, please feel free to open an issue or a pull request.

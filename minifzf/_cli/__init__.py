@@ -21,12 +21,7 @@ def __version__() -> str:
             (pathlib.Path(__file__).parent.parent / "pyproject.toml").read_text(),
         ).group(1)
 
-app = App(
-    name="minifzf", 
-    version=__version__(), 
-    version_flags=['-v', '--version'], 
-    # help="Fast and minimal fuzzy finder."
-)
+app = App(name="minifzf", version=__version__(), version_flags=['-v', '--version'])
 
 def read_stdin(readlines: bool = False):
     """Read values from standard input (stdin). """
