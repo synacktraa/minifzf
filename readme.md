@@ -60,6 +60,7 @@ mfzf -q "<Your Query>" -1
 
 Select from Standard Input.
 
+> No UNIX support for now (Throws `[Errno 25] Inappropriate ioctl for device` because minifzf uses sshkeyboard which utilizes termios library.)
 ```bash
 cat filename | minifzf
 ```
