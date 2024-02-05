@@ -215,7 +215,7 @@ class Selector:
 
         for i, row in enumerate(self._rows[self._start_idx:self._end_idx]):
             is_selected = self._start_idx + i == self._ptr
-            _row = [Text.from_ansi(e) for e in row]
+            _row = [Text.from_ansi(str(e)) for e in row]
             table.add_row(
                 *_row, style=_style.SELECTED_STYLE if is_selected else None)
 

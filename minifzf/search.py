@@ -28,9 +28,9 @@ def iter_search_results(
 
     for search_value in possibilities:
         if processor is not None:
-            processed_value = processor(search_value)
+            processed_value = str(processor(search_value))
         else:
-            processed_value: str = search_value  # type: ignore
+            processed_value = str(search_value)
 
         if query in processed_value or pattern.search(processed_value):
             yield processed_value
