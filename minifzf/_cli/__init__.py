@@ -45,6 +45,10 @@ def __entry__(
     if sys.stdin.isatty():
         selector = Selector.as_path_selector(query=query)
     else:
+        import os
+        if os.name != 'nt':
+            print(f'minifzf has currently no support for stdin input on {os.name!r} OS.')
+            return
         selector = Selector(
             rows=[(_.strip('\n'),) for _ in sys.stdin if _], query=query)
         
@@ -53,7 +57,3 @@ def __entry__(
         return
     
     _ = selector.select()
-    
-
-        
-
