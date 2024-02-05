@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "minifzf"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python Library and Command Line Tool for Fuzzy Selection."
 authors = ["Harsh Verma <synacktra.work@gmail.com>"]
 readme = "README.md"

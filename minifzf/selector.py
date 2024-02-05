@@ -58,6 +58,7 @@ class Selector:
         self._start_idx = 0
         self._end_idx = min(*self.rows_count(include_visible=True))
         self._selected = None
+        self._disable_print: bool = False
 
     @classmethod
     def from_mappings(cls, mappings: Iterable[Mapping[str, str]], query: str = None):
@@ -260,7 +261,9 @@ class Selector:
         """Exit the live console."""
         self._live.stop()
         self._live.console.clear()
-        if msg:
+        if self._disable_print is True: 
+            pass
+        elif msg:
             if isinstance(msg, (dict, list)):
                 print(json.dumps(msg, indent=4))
             else:
@@ -301,8 +304,9 @@ class Selector:
             self.navigate(key=key)
         self.refresh()
 
-    def select(self):
+    def select(self, disable_print: bool = False):
         """Start the live console and return selected item."""
+        self._disable_print = disable_print
         resize_check_stop_event = Event()
         resize_cb_thread = Thread(
             target=self.resize, kwargs={'stop_event': resize_check_stop_event}, daemon=True)
