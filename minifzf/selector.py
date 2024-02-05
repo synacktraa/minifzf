@@ -1,7 +1,8 @@
+import json
 from pathlib import Path
 from string import printable
 from threading import Event, Thread
-from typing import Mapping, Iterable, Optional
+from typing import Mapping, Iterable, Optional, Any
 
 from rich import box
 from rich.text import Text
@@ -255,12 +256,15 @@ class Selector:
         """Refresh live console."""
         self._live.update(self.construct_layout(), refresh=True)
 
-    def exit(self, msg: str = ""):
+    def exit(self, msg: Any = None):
         """Exit the live console."""
         self._live.stop()
         self._live.console.clear()
         if msg:
-            self._live.console.print(msg)
+            if isinstance(msg, (dict, list)):
+                print(json.dumps(msg, indent=4))
+            else:
+                print(msg)
         stop_listening()
     
     def __update_idxs_after_resize(self):
@@ -288,7 +292,7 @@ class Selector:
         """Send key to live console."""
         if key == _key.ENTER:
             self._selected = self.current_value
-            self.exit(str(self._selected or ""))
+            self.exit(self._selected)
         elif self._searching is True:
             self.__update_rows(key=key)
         elif self._searching is False:
